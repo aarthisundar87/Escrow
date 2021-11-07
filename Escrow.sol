@@ -8,8 +8,7 @@ contract Escrow{
     
     modifier onlyAgent(){
         require(msg.sender == agent, "only Agent can perform this transaction");
-        _;
-    }
+      }
     
     constructor () public {
         agent = msg.sender;
