@@ -1,51 +1,46 @@
-require('dotenv').config() ;
+import React, { Component } from 'react';
+import { Route, Router, Switch } from 'react-router-dom';
+import { Container, Menu } from 'semantic-ui-react';
+import './App.css';
+import { Campaign } from './components/Campaign';
+import { Home } from './components/Home';
+import { NotFound } from './components/NotFound';
+import history from './history';
 
-const Web3 = require('web3');
 
-const infuraKey = process.env.INFURA_KEY;
 
-const web3 = new Web3(new Web3.providers.HttpProvider( `http://127.0.0.1:7545`));
 
-const Escrow = new web3.eth.Contract([
-  {
-    "inputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "payee",
-        "type": "address"
-      "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "internalType": "address payable",
-        "name": "payee",
-        "type": "address"
-      }
-    ],
-    "name": "withdraw",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
+class App extends Component {
+
+  render() {
+    return (
+      <Router history={history}>
+        <Container>
+
+          <Menu secondary>
+            <Menu.Item
+              name='home'
+              onClick={this.navigateToHome}
+            />
+          </Menu>
+
+
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/campaigns/:address' component={Campaign} />
+            <Route component={NotFound} />
+          </Switch>
+
+        </Container>
+      </Router>
+    );
   }
-], '0x4c60e0615Dd1e5f6aEf1a771c6749feD7d0ec3A0');
 
-helloWorld.methods.output().call({from: '0x71347Ac1DEd6E357DFcd7124334Ed36419DF82fd'}, function(error, result) {
-    console.log(result);
-});
 
+  navigateToHome(e){
+    e.preventDefault();
+    history.push('/');
+  }
+}
+
+export default App;
