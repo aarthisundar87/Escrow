@@ -1,0 +1,17 @@
+<html>
+	<body>
+		<div>
+			<input type="text" id="User Name">
+			<input type="text" id="Item">
+			<input type="text" id="amount">
+			<script type = "javascript"></script>
+			<button id='sell' onclick=>SELL</button>
+			<button id='buy'>BUY</button>
+		</div>
+	</body>
+</html>
+#load the web3 API
+#get the ABI (a JSON helper that describes the interface to the contract)
+#initialize an instance of the contract at the address where the contract resides using web3.
+#call() (read-only, fast and gas-free, returns value) or sendTransaction() (state-changing, needs mining, costs gas, returns #txnHash).
+#you get a callback from step 4. Wait for the transaction to be mined and then get the mined transaction to see the values, if it #was a state-changing transaction.
