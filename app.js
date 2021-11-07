@@ -7,7 +7,7 @@ import { Home } from './components/Home';
 import { NotFound } from './components/NotFound';
 import history from './history';
 
-
+/* This is the second change as part of PR 18 */
 
 
 class App extends Component {
